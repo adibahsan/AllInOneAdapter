@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Button, ToastAndroid} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import axios from "axios";
+import ReactNativeForegroundService from "@supersami/rn-foreground-service";
 
 
 export const axiosInstance = axios.create({
@@ -10,6 +11,14 @@ export const axiosInstance = axios.create({
     responseType: "json",
 });
 
+
+ReactNativeForegroundService.add_task(() => console.log("I am Being Tested"), {
+    delay: 10000,
+    onLoop: true,
+    taskId: "taskid",
+    onSuccess: res => syncFunction(),
+    onError: (e) => console.log(`Error logging:`, e),
+});
 
 const syncFunction = () =>{
     axiosInstance.get("/sync", {
@@ -70,13 +79,25 @@ export default function App() {
 
             <View style={styles.containerTwo}>
                 <View style={styles.buttonContainer}>
-                    <Button onPress={
-                        registerBackgroundTimer
+                    <Button onPress={ () =>{
+
+                        console.log("Starting Foreground Service");
+                        ReactNativeForegroundService.start({
+                            id: 144,
+                            title: 'Running Service',
+                            message: 'you are online!',
+                        }).then(r => console.log("Started Service",r))
+                    }
                     } title="Headless Task"/>
                 </View>
                 <View  style={styles.buttonContainer}>
                     <Button color ="red" title="Off" onPress={
-                        stopTimer
+                        ()=>{
+                            ReactNativeForegroundService.stop().then(
+                                r => console.log("Stopping Service",r)
+                            )
+                        }
+
                     }/>
                 </View>
             </View>

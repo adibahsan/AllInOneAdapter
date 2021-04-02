@@ -1963,6 +1963,11 @@
   dependencies:
     type-detect "4.0.8"
 
+"@supersami/rn-foreground-service@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@supersami/rn-foreground-service/-/rn-foreground-service-1.1.1.tgz#9afd61e73b227339b8e2573019fc81e45278bb59"
+  integrity sha512-aSpH4Obpv8FNfbpMbQZwUM00f2Gd2p5DlCBXlUg0qvx2Fon/cK+sy7YfHr4ktCGbudItEhaeV3AN/EmI8Cv+Kg==
+
 "@types/babel__core@^7.1.0", "@types/babel__core@^7.1.7":
   version "7.1.14"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.14.tgz#faaeefc4185ec71c389f4501ee5ec84b170cc402"
